@@ -50,9 +50,9 @@ const TestCaseSchema: Schema = new Schema({
 }, { _id: false });
 
 const ExampleSchema: Schema = new Schema({
-  input: { type: String, required: true },
-  output: { type: String, required: true },
-  explanation: { type: String, required: true }
+  input: { type: String, default: "" },
+  output: { type: String, default: "" },
+  explanation: { type: String, default: "" }
 }, { _id: false });
 
 const LineByLineSchema: Schema = new Schema({

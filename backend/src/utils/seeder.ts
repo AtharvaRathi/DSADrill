@@ -5,6 +5,14 @@ import BaseQuestion from '../models/BaseQuestion';
 import { batch1Enrichments } from './seederDataBatch1';
 import { batch2Enrichments } from './seederDataBatch2';
 import { batch3Enrichments } from './seederDataBatch3';
+import { batch4Enrichments } from './seederDataBatch4';
+import { batch5Enrichments } from './seederDataBatch5';
+import { batch6Enrichments } from './seederDataBatch6';
+import { batch7Enrichments } from './seederDataBatch7';
+import { batch8Enrichments } from './seederDataBatch8';
+import { batch9Enrichments } from './seederDataBatch9';
+import { batch10Enrichments } from './seederDataBatch10';
+import { batch11Enrichments } from './seederDataBatch11';
 
 dotenv.config();
 
@@ -232,6 +240,30 @@ allQuestions.forEach(q => {
   }
   if (batch3Enrichments[q.title]) {
     Object.assign(q, batch3Enrichments[q.title]);
+  }
+  if (batch4Enrichments[q.title]) {
+    Object.assign(q, batch4Enrichments[q.title]);
+  }
+  if (batch5Enrichments[q.title]) {
+    Object.assign(q, batch5Enrichments[q.title]);
+  }
+  if (batch6Enrichments[q.title]) {
+    Object.assign(q, batch6Enrichments[q.title]);
+  }
+  if (batch7Enrichments[q.title]) {
+    Object.assign(q, batch7Enrichments[q.title]);
+  }
+  if (batch8Enrichments[q.title]) {
+    Object.assign(q, batch8Enrichments[q.title]);
+  }
+  if (batch9Enrichments[q.title]) {
+    Object.assign(q, batch9Enrichments[q.title]);
+  }
+  if (batch10Enrichments[q.title]) {
+    Object.assign(q, batch10Enrichments[q.title]);
+  }
+  if (batch11Enrichments[q.title]) {
+    Object.assign(q, batch11Enrichments[q.title]);
   }
 });
 
