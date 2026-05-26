@@ -1,34 +1,24 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface IDailyTask {
-  date: Date;
-  questionIds: mongoose.Types.ObjectId[];
-  completed: boolean;
-}
-
 export interface IStudyPlan extends Document {
-  userId: mongoose.Types.ObjectId;
-  goal: string;
+  user: mongoose.Types.ObjectId;
+  title: string;
+  targetDate: Date | null;
+  dailyGoal: number;
+  isActive: boolean;
   startDate: Date;
-  targetEndDate: Date;
-  dailyTasks: IDailyTask[];
   createdAt: Date;
   updatedAt: Date;
 }
 
-const DailyTaskSchema: Schema = new Schema({
-  date: { type: Date, required: true },
-  questionIds: [{ type: Schema.Types.ObjectId, ref: 'BaseQuestion' }],
-  completed: { type: Boolean, default: false },
-}, { _id: false });
-
 const StudyPlanSchema: Schema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    goal: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    targetEndDate: { type: Date, required: true },
-    dailyTasks: [DailyTaskSchema],
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    title: { type: String, required: true },
+    targetDate: { type: Date, default: null },
+    dailyGoal: { type: Number, default: 5 },
+    isActive: { type: Boolean, default: true },
+    startDate: { type: Date, required: true }
   },
   { timestamps: true }
 );

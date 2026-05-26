@@ -6,15 +6,14 @@ export const executeCode = async (req: Request, res: Response) => {
     const { code, testCases } = req.body;
     
     if (!code || !testCases || !Array.isArray(testCases)) {
-      return res.status(400).json({ error: 'Please provide code and an array of testCases' });
+      return res.status(400).json({ success: false, error: 'Please provide code and an array of testCases' });
     }
 
     const results = await executeJavaCode(code, testCases);
     
-    return res.status(200).json({ results });
+    return res.status(200).json({ success: true, data: results });
   } catch (error: any) {
-    // If the service throws an error (e.g. stderr was detected), return a 400 with the exact error string
     const errorMessage = error instanceof Error ? error.message : String(error);
-    return res.status(400).json({ error: errorMessage });
+    return res.status(400).json({ success: false, error: errorMessage });
   }
 };

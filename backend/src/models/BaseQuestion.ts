@@ -14,11 +14,16 @@ export type NeetCodeCategory =
 
 export interface IBaseQuestion extends Document {
   title: string;
-  description: string;
+  description?: string;
   difficulty: 'Easy' | 'Medium' | 'Hard';
   category: NeetCodeCategory;
   corePattern: string;
-  starterCode: string;
+  starterCode?: string;
+  javaStarterCode: string;
+  leetcodeNumber: number;
+  leetcodeLink: string;
+  tags: string[];
+  isActive: boolean;
   testCases: ITestCase[];
   createdAt: Date;
   updatedAt: Date;
@@ -32,7 +37,7 @@ const TestCaseSchema: Schema = new Schema({
 const BaseQuestionSchema: Schema = new Schema(
   {
     title: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
     difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'], required: true },
     category: { 
       type: String, 
@@ -46,7 +51,12 @@ const BaseQuestionSchema: Schema = new Schema(
       ]
     },
     corePattern: { type: String, required: true },
-    starterCode: { type: String, default: '' },
+    starterCode: { type: String, required: false },
+    javaStarterCode: { type: String, required: true },
+    leetcodeNumber: { type: Number, required: true },
+    leetcodeLink: { type: String, required: true },
+    tags: [{ type: String }],
+    isActive: { type: Boolean, default: true },
     testCases: [TestCaseSchema],
   },
   { timestamps: true }
