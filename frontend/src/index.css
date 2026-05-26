@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* 
+  Ensuring base height for full screen layouts
+  to make native flexbox work reliably.
+*/
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0f172a; /* Slate 900 */
+  color: #f8fafc; /* Slate 50 */
+}
