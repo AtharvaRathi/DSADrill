@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { connectDB } from '../config/db';
 import BaseQuestion from '../models/BaseQuestion';
+import { batch1Enrichments } from './seederDataBatch1';
+import { batch2Enrichments } from './seederDataBatch2';
+import { batch3Enrichments } from './seederDataBatch3';
 
 dotenv.config();
 
@@ -219,6 +222,18 @@ const allQuestions = [
   mkQ("Sum of Two Integers", 371, "Medium", "Bit Manipulation", "Sum is a^b, Carry is (a&b)<<1.", "public int getSum(int a, int b)", ["math", "bit-manipulation"]),
   mkQ("Reverse Integer", 7, "Medium", "Bit Manipulation", "Extract and add digits checking for integer overflow limits.", "public int reverse(int x)", ["math"])
 ];
+
+allQuestions.forEach(q => {
+  if (batch1Enrichments[q.title]) {
+    Object.assign(q, batch1Enrichments[q.title]);
+  }
+  if (batch2Enrichments[q.title]) {
+    Object.assign(q, batch2Enrichments[q.title]);
+  }
+  if (batch3Enrichments[q.title]) {
+    Object.assign(q, batch3Enrichments[q.title]);
+  }
+});
 
 const seedData = async () => {
   try {

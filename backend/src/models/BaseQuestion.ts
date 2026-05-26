@@ -5,6 +5,17 @@ export interface ITestCase {
   expectedOutput: string;
 }
 
+export interface IExample {
+  input: string;
+  output: string;
+  explanation: string;
+}
+
+export interface ILineByLine {
+  line: string;
+  explanation: string;
+}
+
 export type NeetCodeCategory = 
   | 'Arrays & Hashing' | 'Two Pointers' | 'Sliding Window' | 'Stack' 
   | 'Binary Search' | 'Linked List' | 'Trees' | 'Tries' 
@@ -25,19 +36,34 @@ export interface IBaseQuestion extends Document {
   tags: string[];
   isActive: boolean;
   testCases: ITestCase[];
+  constraints?: string[];
+  examples?: IExample[];
+  hints?: string[];
+  lineByLineExplanation?: ILineByLine[];
   createdAt: Date;
   updatedAt: Date;
 }
 
 const TestCaseSchema: Schema = new Schema({
+  input: { type: String, default: "" },
+  expectedOutput: { type: String, default: "" },
+}, { _id: false });
+
+const ExampleSchema: Schema = new Schema({
   input: { type: String, required: true },
-  expectedOutput: { type: String, required: true },
+  output: { type: String, required: true },
+  explanation: { type: String, required: true }
+}, { _id: false });
+
+const LineByLineSchema: Schema = new Schema({
+  line: { type: String, required: true },
+  explanation: { type: String, required: true }
 }, { _id: false });
 
 const BaseQuestionSchema: Schema = new Schema(
   {
     title: { type: String, required: true },
-    description: { type: String, required: false },
+    description: { type: String, default: '' },
     difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'], required: true },
     category: { 
       type: String, 
@@ -58,6 +84,10 @@ const BaseQuestionSchema: Schema = new Schema(
     tags: [{ type: String }],
     isActive: { type: Boolean, default: true },
     testCases: [TestCaseSchema],
+    constraints: { type: [String], default: [] },
+    examples: [ExampleSchema],
+    hints: { type: [String], default: [] },
+    lineByLineExplanation: [LineByLineSchema],
   },
   { timestamps: true }
 );
