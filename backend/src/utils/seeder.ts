@@ -20,6 +20,8 @@ const seedData = async () => {
         title: 'Two Sum',
         description: 'Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.',
         difficulty: 'Easy',
+        category: 'Arrays & Hashing',
+        corePattern: 'Use a HashMap to store complements',
         starterCode: `import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        if(!scanner.hasNextInt()) return;\n        int n = scanner.nextInt();\n        int[] nums = new int[n];\n        for(int i = 0; i < n; i++) {\n            nums[i] = scanner.nextInt();\n        }\n        int target = scanner.nextInt();\n        \n        int[] result = twoSum(nums, target);\n        System.out.println(Arrays.toString(result));\n    }\n\n    public static int[] twoSum(int[] nums, int target) {\n        // Write your code here\n        return new int[]{};\n    }\n}`,
         testCases: [
           {
@@ -36,6 +38,8 @@ const seedData = async () => {
         title: 'Valid Anagram',
         description: 'Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.',
         difficulty: 'Easy',
+        category: 'Arrays & Hashing',
+        corePattern: 'Use a frequency array or hash map to count character occurrences',
         starterCode: `import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        if(!scanner.hasNext()) return;\n        String s = scanner.next();\n        String t = scanner.next();\n        System.out.println(isAnagram(s, t));\n    }\n\n    public static boolean isAnagram(String s, String t) {\n        // Write your code here\n        return false;\n    }\n}`,
         testCases: [
           {
